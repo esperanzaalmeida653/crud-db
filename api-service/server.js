@@ -11,13 +11,12 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Configurar conexión a base de datos
+// ---------------------------------------------
+// 🔥 Configurar conexión a Render PostgreSQL
+// ---------------------------------------------
 const pool = new Pool({
-    host: process.env.DB_HOST || 'postgres-db',
-    port: 5432,
-    database: 'crud_db',
-    user: 'postgres',
-    password: 'postgres'
+    connectionString: process.env.DATABASE_URL, // Render usa solo esto
+    ssl: { rejectUnauthorized: false } // Obligatorio en Render
 });
 
 // ------------------ RUTAS CRUD ------------------
